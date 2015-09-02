@@ -1,4 +1,4 @@
-# python3
+# -*- coding: utf-8 -*-
 # JSONモジュールを色々と使ってみるサンプル
 # 参照：https://docs.python.org/2/library/json.html
 import json
@@ -33,7 +33,7 @@ print "================================"
 # 基本
 jsonString = '''
 {
-    "name": "yohei",
+    "name": "ようへい",
     "age": 29,
     "favorites": ["programming", "python"]
 }
@@ -64,10 +64,26 @@ print ComplexEncoder().encode(2 + 1j)
 
 
 
-# 以下のところから
-#18.2.1. Basic Usage
-# あと、日本語への対応も書きたい（ファイルの入出力も含めて）
 
+# ファイルソースから読み込み
+# import codecs
+# inputfile = codecs.open('./user1.json', 'r', 'utf-8')
+# for f in inputfile:
+#     print f.encode('utf-8')
+
+
+f = open("./user1.json")
+# print f.read()
+j = json.load(f)
+print j["name"]
+
+# ファイルへの書き出し
+dict = {
+    "name": "あああ",
+    "age": 50
+}
+f = open("./user2.json", "w")
+json.dump(dict, f, ensure_ascii=False)
 
 
 

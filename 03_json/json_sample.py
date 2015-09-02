@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # python3
 # JSONモジュールを色々と使ってみるサンプル
 # 参照：https://docs.python.org/2/library/json.html
@@ -73,8 +74,125 @@ dict = {
     "name": "あああ",
     "age": 50
 }
-f = open("./user2.json", "w")
+# f = open("./user2.json", "w")
+# json.dump(dict, f, ensure_ascii=False)
+
+
+
+jsonString = '''
+{
+    "name": "aaa",
+    "age": 30
+}
+'''
+data = json.loads(jsonString)
+print(data)
+print(data["name"])
+
+
+# "user2.json"
+# {
+#     "name": "いいい",
+#     "age": 20  
+# }
+f = open("user2.json")
+data = json.load(f)
+print(data)
+print(data["name"])
+
+
+
+
+# dumps
+print("===============================")
+dict = {
+    "name": "aaa",
+    "age": 30
+}
+jsonstring = json.dumps(dict)
+print(jsonstring)
+
+dict = {
+    "name": "あああ",
+    "age": 30
+}
+jsonstring = json.dumps(dict, ensure_ascii=False)
+print(jsonstring) # {"age": 30, "name": "あああ"}
+
+
+print("===============================")
+dict = {
+    "name": "aaa",
+    "age": 30
+}
+f = open("output.json", "w")
+json.dump(dict, f)
+
+dict = {
+    "name": "あああ",
+    "age": 30
+}
+f = open("output2.json", "w")
 json.dump(dict, f, ensure_ascii=False)
+
+
+print("===============================")
+dict = {
+    "name": "aaa",
+    "age": 30
+}
+jsonstring = json.dumps(dict, indent=2)
+print(jsonstring)
+
+
+dict = {
+    "c": 1,
+    "b": 2,
+    "a": 3
+}
+print(json.dumps(dict, sort_keys=True, indent=2))
+
+
+
+dict = {
+    "a": 1,
+    "b": 2
+}
+print(json.dumps(dict, separators=("*", "="), indent=2))
+
+
+
+
+
+def as_complex(dct):
+    if '__complex__' in dct:
+        return complex(dct['real'], dct['imag'])
+    return dct
+jsonstring = '''
+{
+    "__complex__": true, 
+    "real": 1, 
+    "imag": 2
+}
+'''
+print(json.loads(jsonstring, object_hook=as_complex))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
