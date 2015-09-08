@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# for Python 2
+# for Python 3
 #
 # Google Analytics API
 import oauth2client
@@ -23,7 +23,8 @@ service = apiclient.discovery.build("analytics", "v3", http=http)
 
 # データ取得
 results = service.data().ga().get(
-    ids="ga:100037984",
+    # ids="ga:100037984",
+    ids="ga:75138417",
     start_date="2015-09-01",
     end_date="2015-09-07",
     metrics="ga:pageviews,ga:sessions,ga:users"
