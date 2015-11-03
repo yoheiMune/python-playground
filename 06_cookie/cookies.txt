@@ -1,0 +1,3 @@
+#LWP-Cookies-2.0
+Set-Cookie3: NID="73=BlNvBae3K2ZYQj5BKWwHUlOMkc6LqlV87c33xRcu39lShiZf89nplMQwceC8rv8bgQmCAHJcP-d_yvD3Oefwt_t1t4DbFZjMQdev3Er_2H3w0nf6qGyEXWJPAlLXLArTb48LIlZQhFbt2o-Qdwf5kLSnQMTu9y0"; path="/"; domain=".google.co.jp"; path_spec; domain_dot; expires="2016-05-03 16:05:44Z"; HttpOnly=None; version=0
+Set-Cookie3: PREF="ID=1111111111111111:FF=0:TM=1446480344:LM=1446480344:V=1:S=mmcEyrkEt3VU5wJo"; path="/"; domain=".google.co.jp"; path_spec; domain_dot; expires="2015-12-31 16:02:17Z"; version=0
