@@ -28,9 +28,9 @@ data = urlencode(post).encode('utf-8')
 # ログインCookieを取得
 res = opener.open('https://www.hatena.ne.jp/login', data)
 pprint.pprint(res.getheaders())
-with open('out1.html', 'w', encoding='utf-8') as f:
-    f.write(res.read().decode('utf-8'))
-res.close()
+# with open('out1.html', 'w', encoding='utf-8') as f:
+#     f.write(res.read().decode('utf-8'))
+# res.close()
 print('***************')
 
 # 認証が必要なページを開く
