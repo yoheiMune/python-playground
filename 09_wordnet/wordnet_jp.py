@@ -44,8 +44,6 @@ def getWordsFromSenses(sense, lang="jpn"):
     synonym[getSynset(s.synset).name] = lemmas
   return synonym
 
-
-
 def getSynonym (word):
     synonym = {}
     words = getWords(word)
