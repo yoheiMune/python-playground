@@ -2,6 +2,7 @@
 *.pyc
 client_secret.p12
 client_secret.json
+secret
 
 06_cookie2/ipass
 wnjpn.db
