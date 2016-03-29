@@ -29,140 +29,133 @@ credentials = oauth2client.client.SignedJwtAssertionCredentials(json_key['client
 gc = gspread.authorize(credentials)
 
 
-# Open Workbook.
+# 基本的な操作
+#####################################
+# ワークブックを開く
+# 引数にワークブック名を指定する
 wb = gc.open("Python_API_ACCESS_SAMPLE")
 
-
-# Get Sheet.
+# シートを取得する
+# 引数にシート名を指定する
 sh = wb.worksheet("Sheet1")
 
-
-# Update a cell.
+# 指定したセルの値を更新する
 sh.update_acell('B2', "it's down there somewhere, let me take another look.")
 
-
-# Fetch a cell range
+# Rangeでセル一覧を取得する
 cell_list = sh.range('A1:B7')
 print(cell_list)
 
 
-
-# Open Sheet, Workbook
+# 開く
 #####################################
-# You can open a spreadsheet by its title as it appears in Google Docs
-wb = gc.open("Python_API_ACCESS_SAMPLE") # <-- Look ma, no keys!
+# ファイル名を指定してワークブックを開く
+wb = gc.open("Python_API_ACCESS_SAMPLE")
 
-# If you want to be specific, use a key (which can be extracted from
-# the spreadsheet's url)
+# シートIDを指定してワークシートを開く
 sht1 = gc.open_by_key('1VTHyBs-EmWh7WVhFG7WmcuImZUsIPtrjP3hpLqQQhCc')
 
-# Or, if you feel really lazy to extract that key, paste the entire url
+# URLを指定してワークシートを開く
 sht2 = gc.open_by_url('https://docs.google.com/spreadsheets/d/1VTHyBs-EmWh7WVhFG7WmcuImZUsIPtrjP3hpLqQQhCc/edit#gid=0')
 
 
-
-# Select a worksheet.
+# ワークシートを選択する
 #####################################
-# Select worksheet by index. Worksheet indexes start from zero
+# インデックスを指定して開く
 worksheet = wb.get_worksheet(0)
 
-# By title
+# シート名を指定して開く
 worksheet = wb.worksheet("私のシート")
 
-# Most common case: Sheet1
+# シート1を開く
 worksheet = wb.sheet1
 
-# Get a list of all worksheets
+# シート一覧を取得する
 worksheet_list = wb.worksheets()
 
 
-
-
-# Create a worksheet.
+# ワークシートを作成する
 #####################################
 worksheet = wb.add_worksheet(title="A worksheet", rows="100", cols="20")
 
 
-# Delete a worksheet.
+# ワークシートを削除する
 #####################################
 wb.del_worksheet(worksheet)
 
 
-# Get a cell value.
+# セルの値を取得する
 #####################################
-# With label
+# ラベルを指定する
 val = sh.acell('B1').value
 print(val)
 
-# With coords
+# 行番号と列番号を指定する
 val = sh.cell(1, 2).value
 print(val)
 
 
-# Get all values in a row / column.
+# 指定した行/列の値を全て取得する
 #####################################
-# Get all values from the first row
+# 指定した行の値を全て取得する
 values_list = sh.row_values(1)
 print(values_list)
 
-# Get all values from the first column
+# 指定した列の値を全て取得する
 values_list = sh.col_values(1)
 print(values_list)
 
 
-# Get all values in a sheet.
+# シートの全ての値を取得する
 #####################################
 list_of_lists = sh.get_all_values()
 print(list_of_lists)
 
 
-# Find a cell.
+# セルを見つける
 #####################################
-# Find a cell with exact string value
+# 文字列で探す
 cell = sh.find("John")
 print("Found something at R%sC%s" % (cell.row, cell.col))
 
-# Find a cell matching a regular expression
+# 正規表現で探す
 amount_re = re.compile(r'(Big|Enormous) dough')
 cell = sh.find(amount_re)
 print(cell)
 
 
-
-# Find all matched cells.
+# 合致する全てのセルを取得する
 #####################################
-# Find all cells with string value
+# 文字列で探す
 cell_list = sh.findall("Rug store")
 print(cell_list)
 
-# Find all cells with regexp
+# 正規表現で探す
 criteria_re = re.compile(r'(Small|Room-tiering) rug')
 cell_list = sh.findall(criteria_re)
 print(cell_list)
 
 
-# Cell Object.
+# Cellオブジェクト
 ######################################
-sh.acell('A1')
-value = cell.value
-row_number = cell.row
-column_number = cell.col
+cell = sh.acell('A1')
+value = cell.value        # 値
+row_number = cell.row     # 行番号
+column_number = cell.col  # 列番号
 
 
-
-# Cell Object.
+# セルの更新
 ######################################
+# 指定したセルの値を更新する
 sh.update_acell('B1', 'Bingo!')
-# Or
 sh.update_cell(1, 2, 'Bingo!')
 
-# Select a range
+# セルを纏めて更新する（バッチ処理）
 cell_list = sh.range('H3:K4')
 for cell in cell_list:
     cell.value = 'O_o'
-
-# Update in batch
 sh.update_cells(cell_list)
+
 
 
 
