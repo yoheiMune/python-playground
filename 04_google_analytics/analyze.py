@@ -2,25 +2,48 @@
 # for Python 3
 #
 # Google Analytics API
-import oauth2client
+# import oauth2client
 import apiclient
 import httplib2
 import datetime
 
-scope = ["https://www.googleapis.com/auth/analytics.readonly"]
-service_account_email = "682828118526-b34hs263kbvvl22v06fj0m6ro1sds4k8@developer.gserviceaccount.com"
+from oauth2client.service_account import ServiceAccountCredentials
+from httplib2 import Http
+scopes = ["https://www.googleapis.com/auth/analytics.readonly"]
+json_file = "client_secret.json"
+credentials = ServiceAccountCredentials.from_json_keyfile_name(json_file, scopes=scopes)
+http_auth = credentials.authorize(Http())
+service = apiclient.discovery.build("analytics", "v3", http=http_auth)
 
-# キーのロード
-key_file = "client_secret.p12"
-with open(key_file, 'rb') as f:
-    key = f.read()
 
-# OAuth認証の準備
-credentials = oauth2client.client.SignedJwtAssertionCredentials(service_account_email, key, scope=scope)
-http = credentials.authorize(httplib2.Http())
 
-# コネクション作成
-service = apiclient.discovery.build("analytics", "v3", http=http)
+
+
+
+
+
+
+
+
+
+
+
+
+
+# scope = ["https://www.googleapis.com/auth/analytics.readonly"]
+# service_account_email = "682828118526-b34hs263kbvvl22v06fj0m6ro1sds4k8@developer.gserviceaccount.com"
+
+# # キーのロード
+# key_file = "client_secret.p12"
+# with open(key_file, 'rb') as f:
+#     key = f.read()
+
+# # OAuth認証の準備
+# credentials = oauth2client.client.SignedJwtAssertionCredentials(service_account_email, key, scope=scope)
+# http = credentials.authorize(httplib2.Http())
+
+# # コネクション作成
+# service = apiclient.discovery.build("analytics", "v3", http=http)
 
 # データ取得 （基本データ）
 #################################
