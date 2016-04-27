@@ -8,7 +8,7 @@ from httplib2 import Http
 
 # Authentication.
 # Ref: https://developers.google.com/google-apps/calendar/quickstart/python
-json_file = 'yoheim-labo-3178ee6fa5bf.json'
+json_file = 'secret/yoheim-labo-3178ee6fa5bf.json'
 scopes = ['https://www.googleapis.com/auth/calendar.readonly']
 credentials = ServiceAccountCredentials.from_json_keyfile_name(json_file, scopes=scopes)
 http_auth = credentials.authorize(Http())
