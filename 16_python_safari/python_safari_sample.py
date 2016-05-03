@@ -2,5 +2,10 @@
 # Open Safari from Python.
 import webbrowser
 
+# ref
+# https://docs.python.org/3.5/library/webbrowser.html
 
-webbrowser.open("http://www.yoheim.net/blog.php?q=20160411", new=2)
+url = "http://www.yoheim.net"
+
+# default browser
+webbrowser.open(url)
