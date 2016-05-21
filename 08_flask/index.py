@@ -13,14 +13,24 @@ def index():
 
 @app.route('/hello')
 def hello():
-    return 'Hello World'
+    val = request.args.get("msg", "Not defined")
+    return 'Hello World '  + val
 
-@app.route('/user/<username>')
-def user(username):
-    return 'User: %s' % username
+@app.route('/post_request', methods=['POST'])
+def post_request():
+    username = request.form["username"]
+    return 'Thank you ' + username
 
-@app.route('/post/<int:postid>')
+# @app.route('/user/<username>')
+# def user(username):
+#     return 'User: %s' % username
+
+@app.route('/post/<postid>')
 def post(postid):
+    return 'Thanks post: id = %s' % postid
+
+@app.route('/post2/<int:postid>')
+def post2(postid):
     return 'Thanks post: id = %d' % postid
 
 if __name__ == "__main__":
