@@ -237,6 +237,44 @@ Tkinter.Toplevel(master, class_="ClassName")
 class FooBar:
     __boo = "aaa"
 
+# モジュール名
+# すべて小文字の短い名前。読みやすくするためにアンダースコアを使っても良い。
+my_module
+
+# パッケージ名
+# すべて小文字の短い名前。アンダースコアの利用は推奨されていない。
+mypackage
+
+# クラス名
+# CapWordsを利用する
+MyClass
+
+# 例外の名前
+# 例外はクラスであるべきで、名前はCapWords形式を採用すべきです。
+# ただしその例外が実際にエラーである場合には、末尾にErrorをつけます。
+MyError
+
+# 関数の名前
+# すべて小文字を使い、読みやすくするために必要に応じてアンダースコアも利用出来る
+my_function
+# ただし、すでにmixedCaseがつかわれている場合は、互換性を保つためにmixedCaseを使うこともできます。
+saySomething
+
+# 関数の引数
+# インスタンスメソッドの場合は、必ず最初はselfにします。
+def my_function(self, xxx):
+    pass
+# クラスメソッドの場合は、必ずclsにします。
+def my_class_function(cls, xxx) :
+    pass
+# 引数の変数名が予約語と被る場合は、末尾にアンダースコアをつけます。
+def my_function(self, id_, dict_):
+    pass
+
+# 定数
+# 全て大文字で書き、必要に応じてアンダースコアを利用することもできます
+MY_CONSTS
+
 
 
 
