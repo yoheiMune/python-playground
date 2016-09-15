@@ -33,5 +33,17 @@ def post(postid):
 def post2(postid):
     return 'Thanks post: id = %d' % postid
 
+@app.route("/test1")
+def test1():
+    favs = request.args.getlist("fav")
+    print("favs:", favs)
+    return "ok"
+
+@app.route("/test2", methods=['POST'])
+def test2():
+    favs = request.form.getlist("fav")
+    print("favs:", favs)
+    return "ok"
+
 if __name__ == "__main__":
     app.run(debug=True)
