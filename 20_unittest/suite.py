@@ -1,10 +1,10 @@
 import unittest
-import test
+import mytest
 import other
 
 def suite():
     test_suite = unittest.TestSuite()
-    test_suite.addTest(unittest.makeSuite(test.MyTest))
+    test_suite.addTest(unittest.makeSuite(mytest.MyTest))
     test_suite.addTest(unittest.makeSuite(other.OtherTest))
     return test_suite
 
