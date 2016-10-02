@@ -9,5 +9,13 @@
 <body>
     <h1><img src="/static/logo.png"></h1>
     <p>{{ message }}</p>
+    {# コメントです #}
+    <p>{{ userName or ''}}</p>
+    <p>{{ totalPay if totalpay != None else ''}}</p>
+    <p>{{ userName|default('a', True) }}</p>
+    <p>{{ totalPay|default('a', True) }}</p>
+    <p>{{ userName|sn }}</p>
+    <p>{{ totalPay|sn }}</p>
+
 </body>
 </html>

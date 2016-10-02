@@ -5,11 +5,16 @@ from flask import Flask, request, session, g, redirect, url_for, abort, render_t
 
 app = Flask(__name__)
 
+# Custom Jinja Filter.
+app.jinja_env.filters['sn'] = lambda str_:str_ if str_ != None else ''
+
+
 @app.route('/')
 def index():
-    # return 'Index Root'
-    # flash('Welcome to Flask')
-    return render_template('index.html', message="Hello")
+    userName = None
+    totalPay = 0
+    return render_template('index.html', 
+        message="Hello", userName=userName, totalPay=totalPay)
 
 @app.route('/hello')
 def hello():
