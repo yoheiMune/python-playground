@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 # Python3
 # Sample of Flask Web Application
-from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
+from datetime import datetime
+import logging
+from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash, make_response
+
 
 app = Flask(__name__)
 
@@ -48,6 +51,50 @@ def test1():
 def test2():
     favs = request.form.getlist("fav")
     print("favs:", favs)
+    return "ok"
+
+@app.route("/cookie")
+def cookie():
+    # Contents
+    response = make_response("OK")
+    # Create cookie
+    max_age = 60 * 60 * 24 * 30 # 30 days
+    expires = int(datetime.now().timestamp()) + max_age
+    response.set_cookie("gscookie", value="valval", expires=expires)
+    # Response
+    return response
+
+@app.route("/get_from_cookie")
+def get_from_cookie():
+    val = request.cookies.get("gscookie")
+    return val
+
+app.secret_key = 'my_special_secret_key'
+
+@app.route("/session")
+def session_sample():
+    val = int(session.get("num", 1))
+    session["num"] = val + 1
+    return "%d回目の訪問ですね！" % val
+
+info_handler = logging.FileHandler('info.log')
+info_handler.setLevel(logging.INFO)
+app.logger.addHandler(info_handler)
+
+error_handler = logging.FileHandler('error.log')
+error_handler.setLevel(logging.ERROR)
+app.logger.addHandler(error_handler)
+
+@app.route("/logging")
+def logging_sample():
+    app.logger.info('Info log...')
+    app.logger.warning('Warning log...')
+    app.logger.error('Error log...')
+    try:
+        1 / 0
+    except:
+        app.logger.exception("Exception log...")
+    # Response.
     return "ok"
 
 if __name__ == "__main__":
