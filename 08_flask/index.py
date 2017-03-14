@@ -97,5 +97,9 @@ def logging_sample():
     # Response.
     return "ok"
 
+# The sample of Blueprint.
+from api import app as api_app
+app.register_blueprint(api_app)
+
 if __name__ == "__main__":
     app.run(debug=True)

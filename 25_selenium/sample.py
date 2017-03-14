@@ -20,25 +20,24 @@ import time
 
 # 普通に取ると、取得できない...
 from urllib.request import urlopen
-with urlopen("https://dokusho-ojikan.jp/original/#!top") as res:
+with urlopen("http://yoheim.net/work/async_page.html") as res:
     html = res.read().decode("utf-8")
     bs = BeautifulSoup(html, "html.parser")
-    img_urls = [img.get("src") for img in bs.select("#unique-pickup img")]
+    img_urls = [img.get("src") for img in bs.select("#imageRoot img")]
     pprint(img_urls)  # 空っぽ    
 
 
 driver = webdriver.PhantomJS()
-driver.get("https://dokusho-ojikan.jp/original/#!top")
+driver.get("http://yoheim.net/work/async_page.html")
 
 # ちょっと待つ（必要あれば）
 # time.sleep(5) # 5s
 
 html = driver.page_source
-open("sample.html", "w").write(html)
 
 # 画像のURLを取得する.
 bs = BeautifulSoup(html, "html.parser")
-img_urls = [img.get("src") for img in bs.select("#unique-pickup img")]
+img_urls = [img.get("src") for img in bs.select("#imageRoot img")]
 pprint(img_urls)
 
 # ついでにスクリーンショット.
