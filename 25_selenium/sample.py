@@ -12,7 +12,6 @@
         PhantomJSをインストールして、$PATH に通った状態にする.
         http://phantomjs.org/
 """
-import os
 from pprint import pprint
 from selenium import webdriver
 from bs4 import BeautifulSoup
