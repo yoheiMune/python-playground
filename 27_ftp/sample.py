@@ -15,6 +15,9 @@ Password:  # password
 
 参考：
     http://anon21.qlookblog.net/20091202.html
+    http://d.hatena.ne.jp/e_c_e_t/20120301
+    http://iiwake.me/2013/06/19/330/
+    https://docs.python.jp/3/library/ftplib.html
 
 """
 from ftplib import FTP
@@ -49,13 +52,13 @@ with open("bb.txt.zip", "wb") as f:
 ftp.mkd("subdir")
 
 # ファイル一覧の取得
-items = ftp.nlst()
+items = ftp.nlst(".")
 pprint(items)
 
 # ファイル一覧を標準出力に表示.
-ftp.dir()
+ftp.dir(".")
 
-items = ftp.mlsd()
+items = ftp.mlsd(".")
 for filename, opt in items:
     print("---------------")
     print(filename)
