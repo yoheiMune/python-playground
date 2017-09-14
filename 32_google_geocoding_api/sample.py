@@ -68,3 +68,84 @@ def extract(result):
 
 if __name__ == "__main__":
     execute()
+
+"""
+▼ 実行結果 ▼
+
+{
+   "results" : [
+      {
+         "address_components" : [
+            {
+               "long_name" : "１",
+               "short_name" : "１",
+               "types" : [ "political", "sublocality", "sublocality_level_4" ]
+            },
+            {
+               "long_name" : "２３",
+               "short_name" : "２３",
+               "types" : [ "political", "sublocality", "sublocality_level_3" ]
+            },
+            {
+               "long_name" : "１丁目",
+               "short_name" : "１丁目",
+               "types" : [ "political", "sublocality", "sublocality_level_2" ]
+            },
+            {
+               "long_name" : "津田沼",
+               "short_name" : "津田沼",
+               "types" : [ "political", "sublocality", "sublocality_level_1" ]
+            },
+            {
+               "long_name" : "習志野市",
+               "short_name" : "習志野市",
+               "types" : [ "locality", "political" ]
+            },
+            {
+               "long_name" : "千葉県",
+               "short_name" : "千葉県",
+               "types" : [ "administrative_area_level_1", "political" ]
+            },
+            {
+               "long_name" : "日本",
+               "short_name" : "JP",
+               "types" : [ "country", "political" ]
+            },
+            {
+               "long_name" : "275-0016",
+               "short_name" : "275-0016",
+               "types" : [ "postal_code" ]
+            }
+         ],
+         "formatted_address" : "日本、〒275-0016 千葉県習志野市津田沼１丁目２３−１",
+         "geometry" : {
+            "location" : {
+               "lat" : 35.6904813,
+               "lng" : 140.024784
+            },
+            "location_type" : "ROOFTOP",
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 35.6918302802915,
+                  "lng" : 140.0261329802915
+               },
+               "southwest" : {
+                  "lat" : 35.6891323197085,
+                  "lng" : 140.0234350197085
+               }
+            }
+         },
+         "place_id" : "ChIJG-BIJyOAImARjzeKi2JhEr4",
+         "types" : [ "political", "sublocality", "sublocality_level_4" ]
+      }
+   ],
+   "status" : "OK"
+}
+
+post_code: 275-0016
+prefecture: 千葉県
+city: 習志野市
+latitude: 35.6904813
+longitude: 140.024784
+place_id: ChIJG-BIJyOAImARjzeKi2JhEr4
+"""
