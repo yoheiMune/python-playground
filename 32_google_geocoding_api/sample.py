@@ -15,17 +15,12 @@ import requests
 
 APIKEY_ENV_NAME = "GOOGLE_GEOCODING_API_KEY"
 
-def execute():
-
-    # APIKeyの取得
-    API_KEY = os.environ.get(APIKEY_ENV_NAME)
-    if not API_KEY:
-        raise Exception("環境変数（{}）に、APIKeyが設定されていません".format(APIKEY_ENV_NAME))
+def execute1(api_key):
 
     url = "https://maps.googleapis.com/maps/api/geocode/json"
     params = {
-        "key" : API_KEY,
-        "address" : "千葉県習志野市津田沼1-23-1",
+        "key" : api_key,
+        "address" : "長野県諏訪郡下諏訪町南四王6133",
         "language" : 'ja'
     }
     r = requests.get(url, params=params)
@@ -65,12 +60,49 @@ def extract(result):
     print("place_id:", place_id)
 
 
+def reverse_geocoding(api_key):
+
+  url = "https://maps.googleapis.com/maps/api/geocode/json"
+  params = {
+      "key" : api_key,
+      # 〒393-0045 長野県諏訪郡下諏訪町南四王6133
+      "latlng" : "36.066862,138.08763",
+      "language" : 'ja'
+  }
+  r = requests.get(url, params=params)
+  print(r.text)
+
+  result = r.json()
+
+  prefecture = ""
+  city = ""
+  for c in result["results"][0]["address_components"]:
+    types = c["types"]
+    name = c["long_name"]
+    if "administrative_area_level_1" in types:
+        prefecture = name
+    elif "locality" in types:
+        city = name
+  print("prefecture:", prefecture)
+  print("city:", city)
+
+
 
 if __name__ == "__main__":
-    execute()
+
+    # APIKeyの取得
+    API_KEY = os.environ.get(APIKEY_ENV_NAME)
+    if not API_KEY:
+        raise Exception("環境変数（{}）に、APIKeyが設定されていません".format(APIKEY_ENV_NAME))
+
+    # 住所からGeoLocation
+    execute1(API_KEY)
+
+    # GeoLocationから住所
+    reverse_geocoding(API_KEY)
 
 """
-▼ 実行結果 ▼
+▼ 実行結果（住所からGeoLocation） ▼
 
 {
    "results" : [
