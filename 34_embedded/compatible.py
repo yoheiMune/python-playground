@@ -4,6 +4,7 @@
     参考：
         https://docs.python.jp/3/reference/datamodel.html#object.__lt__
         https://docs.python.org/ja/3/library/constants.html#NotImplemented
+        http://portingguide.readthedocs.io/en/latest/comparisons.html
 """
 
 class Item(object):
