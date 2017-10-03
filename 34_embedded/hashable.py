@@ -12,7 +12,7 @@ class User(object):
         self.name = name
 
     def __eq__(self, other):
-        if type(other) != User:
+        if not isinstance(other, User):
             return False
         return self.id == other.id
 
