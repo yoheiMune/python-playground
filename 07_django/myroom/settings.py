@@ -118,3 +118,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Special Settings.
+SPECIAL_TEXT = "Hello from production"
+
+# Load local settings if exists.
+try:
+    from .settings_local import *
+except ImportError:
+    pass

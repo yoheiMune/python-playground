@@ -40,6 +40,12 @@ $ cd myroom
 ### The development server.
 ```
 $ python3 manage.py runserver
+
+# Or,
+$ django-admin runserver --settings=myroom.settings --pythonpath="."
+
+# for local
+# $ django-admin runserver --settings=myroom.settings_local --pythonpath="."
 ```
 Then, access.
 ```
